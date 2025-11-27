@@ -61,49 +61,6 @@ ingredients_dict = get_shop_list_by_dishes(['Омлет', 'Фахитос'], 1)
 # print(ingredients_dict)
 
 
-# def read_files(path1=None, path2=None, path3=None):
-#     with open(path1, 'r', encoding='utf-8') as f:
-#         txt_1 = f.read()
-#     list_1 = []
-#     for i in txt_1.split('\n'):
-#         list_1.append(i.splitlines())
-
-#     with open(path2, 'r', encoding='utf-8') as f:
-#         txt_2 = f.read()
-#     list_2 = []
-#     for i in txt_2.split('\n'):
-#         list_2.append(i.splitlines())
-
-#     with open(path3, 'r', encoding='utf-8') as f:
-#         txt_3 = f.read()
-#     list_3 = []
-#     for i in txt_3.split('\n'):
-#         list_3.append(i.splitlines())
-
-#     all_list = [list_1,  list_2,  list_3]
-#     all_list.sort(reverse=True)
-#     for i in all_list:
-#         n = 0
-#         print(i)
-#         print(len(i))
-#         for j in i:
-#             n += 1
-#             print(f'Строка номер {n} файла номер {len(i)}')
-
-#             # print(f'1.txt, {a}{len(list_1)}')
-#     #     for i in range(len(list_1)):
-#     #         print(f'Строка номер {i+1} файла номер 2')
-
-
-
-
-
-
-# dd = read_files('1.txt','2.txt','3.txt')
-
-
-
-
 
 
 
@@ -111,14 +68,12 @@ ingredients_dict = get_shop_list_by_dishes(['Омлет', 'Фахитос'], 1)
 def read_files(path1=None, path2=None, path3=None):
     with open(path1, 'r', encoding='utf-8') as f:
         txt_1 = f.read()
+    result = ""
 
     lines_1 = txt_1.split('\n')
     list_1 = [path1, len(lines_1), 1]
     list_1 += lines_1
     
-    # for i in txt_1.split('\n'):
-    #     list_1.append(i.splitlines())
-
     with open(path2, 'r', encoding='utf-8') as f:
         txt_2 = f.read()
     
@@ -130,19 +85,22 @@ def read_files(path1=None, path2=None, path3=None):
     lines_3 = txt_3.split('\n')
     list_3 = [path3, len(lines_3), 3]
     list_3 += lines_3
+
+
     all_list = [list_1, list_2, list_3]
     all_list.sort(key=len)
-
     i = 1
     for file in all_list:
         
-        print(file[0],file[1], sep = '\n')
+        result += str(file[0]) + '\n' + str(file[1]) + '\n'
         lines_number = file[1]
         for n in range(lines_number):
             n += 1
-            print(f'Строка номер {n} файла номер {file[2]}')
-        
+            result += f'Строка номер {n} файла номер {file[2]}\n'
         i += 1
 
+    return result
 
-dd = read_files('1.txt','2.txt','3.txt')
+
+files_info = read_files('1.txt','2.txt','3.txt')
+# print (files_info)
